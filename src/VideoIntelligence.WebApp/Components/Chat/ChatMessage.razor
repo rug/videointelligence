@@ -1,0 +1,50 @@
+﻿@using System.Text.RegularExpressions
+@using VideoIntelligence.WebApp.Model
+
+
+
+@if (State.IsAssistant)
+{
+    @* bg-info bg-opacity-10 border border-info rounded*@
+    <div class="message assistant visible">
+        <div class="sender-name sender-name-assistent"><i class="bi bi-robot fs-4"></i> Assistant</div>
+        <div class="message-content" visi>
+            <div class="message-text">
+                @{
+
+                    // Define the regex pattern for Azure Blob URLs starting with 'http' or 'https'
+                    string pattern = @"https?://[a-zA-Z0-9.-]+\.blob\.core\.windows\.net/[^\s]*";
+                    // Check if the pattern exists in the input string
+                    if (string.IsNullOrEmpty(State.Content))
+                    {
+                        @((MarkupString)"thinking <i class=\"fas fa-ellipsis fa-beat-fade\"></i>")
+                    }
+                    else if (!string.IsNullOrWhiteSpace(State.Content) && Regex.IsMatch(State.Content, pattern))
+                    {
+                        // Replace matches with '<a href="URL"></a>'
+                        string HtmlString = Regex.Replace(State.Content, pattern, match => $"<a href=\"{match.Value}\" target=\"_blank\" class=\"link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover\">{match.Value}</a>");
+                        @((MarkupString)HtmlString)
+                    }
+                    else
+                    {
+                        @State.Content
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="message">
+        <div class="sender-name text-primary"><i class="bi bi-person-fill fs-4"></i> You</div>
+        <div class="message-content">
+            <div class="message-text">@State.Content</div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public Message State { get; set; } = default!;
+} 

@@ -1,0 +1,24 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Video Intelligence</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+       @*  <div class="p-3">
+            <button type="button" class="btn btn-light w-100"><i class="bi bi-plus-lg"></i> Create New Chat</button>
+        </div> *@
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-2" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-chat-right-dots pe-2" aria-hidden="true"></span> New Chat
+            </NavLink>
+        </div>
+        @* <div class="nav-item px-3">
+            <NavLink class="nav-link px-2" href="#biology" Match="NavLinkMatch.All">
+                <span class="bi bi-chat-right-dots pe-2" aria-hidden="true"></span> Biology Heredity
+            </NavLink>
+        </div> *@
+    </nav>
+</div>

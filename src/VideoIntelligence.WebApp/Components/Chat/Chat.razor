@@ -1,0 +1,76 @@
+@page "/chat"
+@inject IConfiguration Configuration
+@inject IJSRuntime JS
+@using VideoIntelligence.WebApp.Model
+@attribute [StreamRendering(true)]
+
+<PageTitle>Chat</PageTitle>
+
+<style>
+    .textarea-container {
+        position: relative; /* Enables positioning of the button inside the container */
+    }
+
+    .textarea-button {
+        position: absolute;
+        bottom: 10px; /* Position from the bottom of the container */
+        right: 10px; /* Position from the right of the container */
+        z-index: 10; /* Ensures the button stays above the textarea */
+    }
+
+    textarea {
+        resize: none; /* Prevents manual resizing */
+    }
+</style>
+<div class="chat">
+    <div class="messages-scroller">
+        <div class="messages pb-3">
+          @*   <ChatMessage State="@(new Message(){IsAssistant = true, Content = "Hi, I'm a helpful assistant, how may I assist you?"})" /> *@
+            <ChatMessage State="@(new Message(){IsAssistant = true, Content = "Hi, I'm your video assistant, here to make your experience smoother and more enjoyable. Whether you're looking for information, support, or guidance, I'm here to help every step of the way. Upload your video or give me a link to an existing video for analyzing, and we'll get started!"})" />
+            @for (var i = 0; i < messages.Count; i++)
+            {
+                var id = $"message{i}";
+                var state = messages[i]!;
+                <ChatMessage @key="@id" State="@state" />
+            }
+        </div>
+    </div>
+
+
+    <form class="write-message h-100" @ref="@writeMessageElement" @onsubmit="@SendMessage" id="upload-form">
+            <div class="textarea-container position-relative ps-3">
+                <!-- Textarea -->
+                <textarea rows="4" @bind="@userMessageText"
+                          class="form-control"
+                          placeholder="Ask the AI assistant"></textarea>
+
+
+                <!-- Hidden file input -->
+          @*   <input type="file" id="file-input" style="display: none;" @onchange="OnFileSelected"> *@
+            <InputFile OnChange="HandleFileSelected" style="display: none;" id="file-input" />
+
+                <!-- Upload Button -->
+            <button class="btn btn-primary textarea-button" type="button" onclick="triggerFileUpload()">
+                    <i class="bi bi-upload"></i> <!-- Bootstrap upload icon -->
+                </button>
+                <button type="submit" class="d-none">Chat</button>
+            </div>
+        </form>
+   
+    
+    
+   
+</div>
+<script>
+    function triggerFileUpload() {
+        const fileInput = document.getElementById('file-input');
+        fileInput.click(); // Open the file upload dialog
+    }
+
+     function submitForm() {
+         debugger;
+        const form = document.getElementById('upload-form'); // Access the form
+        form.submit(); // Programmatically submit the form
+    }
+</script>
+

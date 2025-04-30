@@ -34,6 +34,7 @@ Video Intelligence is an assistant specialized in understanding videos. It extra
 
 Video Intelligence aims at helping people understanding the content of any video. It works with any kind of video, but we specially had in mind courses/lessons. It does a great job in summarizing and explaining the content of the video, with images taken from relevant instants, and the webpage creation is the perfect tool to have automatic notes. For instance, it will note down mathematical formulas and save the prominent images of slideshows/whiteboards. The quiz creation functionality is both useful to the student who wants to self-test his understanding of the lesson, and to the professor who wants a quick way to create tests. But education is not the only application field. Imagine being interested in the content of a long video of any type, e.g. news, documentary, opinions, but not having time: you may just process it with Video Intelligence and get your information summarized and explained in a webpage with images and notes. 
 Imagine being interested in a topic and having found tens of videos which claim to cover topic, but you do not know if it is actually true, and you do not know for which level of expertise they are fit, or if they go deep in detail or are superficial. Trying to watch them all to see if they match your needs can be time-expensive, so you could just analyze them with Video Intelligence to produce a webpage for each, and then give a glance at it to check if the subject is the one you wanted, and the level of detail/expertise fits you well.
+You can see an [example here](https://youtu.be/Q1uC0nnafxc)
 
 
 ## Technology stack
@@ -116,6 +117,8 @@ Configure the app settings into the appsettings.json.
 Once you've opened the project locally, you can [deploy it to Azure](https://learn.microsoft.com/en-us/training/paths/deploy-a-website-with-azure-app-service/) or run it locally. 
 
 ## Example
+
+This example is with the video ["College Physics 1: Lecture 9 - Motion With Constant Acceleration" by Spahn's Science Lectures](https://www.youtube.com/watch?v=6dBOdKpUUgA)
 
 ### Upload a file.
 
